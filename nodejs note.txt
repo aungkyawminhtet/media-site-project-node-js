@@ -1,0 +1,37 @@
+npm init -y => to install all package 
+npm init
+
+to install express
+npm install or i express => install
+npm uninstall express => uninstall
+
+to multiple install all libarary
+npm i express body-parser bcrypt moment-timezome
+npm uninstall express body-parser etc..
+
+"*" is all route notic in callback fun(req, res, next)
+Notic ** => app.get("*", (res, req) => {}) is locate last line of code
+res.status(200).json({});
+res.send("");
+
+to get data from postman api
+app.use(express.json()) add all above of route
+and use req.body.id/name/age
+
+app.use() is for middleware
+
+if :id is same to combine route eg: router.Route("/:id") .get()/.patch()/.delete()
+
+controller is control data from database
+
+App -> userManager -> userRoute -> userController -> userDatabase
+App -> postManage -> postRoute -> postController -> postDatabase
+app -> rouleManager -> roleRoute -> roleController -> roleDatabase
+
+.env file is changes all of applications store in env 	need install => npm i dotenv
+check npm install file => npm ls
+
+mongo db lession
+install => npm i mongoose
+
+microservice , monolathic, cloudify

@@ -1,0 +1,52 @@
+let users = [
+  {id: 1, name : "mg mg", age: 21},
+  {id: 2, name : "ag ag", age: 20},
+  {id: 3, name : "su su", age: 24},
+  {id: 4, name : "kg kg", age: 25},
+];
+
+app.get("/user", (req, res, next) => {
+  res.status(200).json(users);
+});
+
+app.get("/user/:id", (req, res, next) => {
+  let id = req.params.id;
+  let user = users.find(usr => usr.id == id);
+  if(user){
+    res.json(user);
+  }else{
+    res.status(200).json({msg : "no user with that id"});
+  }
+});
+
+
+app.post("/user", (req, res, next) => {
+  let id = req.body.id;
+  let name = req.body.name;
+  let age = req.body.age;
+
+  let newUser = {
+    id,
+    name,
+    age
+  }
+  // console.log(newUser);
+  users.push(newUser);
+  res.status(200).json(newUser);
+});
+
+app.patch("/user/:id", (req, res, next) => {
+  let id = req.params.id;
+  let edituser = users.find(usr => usr.id == id);
+  if(edituser){
+    edituser.name = req.body.name;
+    res.json(users);
+  }else{
+    res.status(200).json({msg: "no user id not found"});
+  }
+});
+
+app.delete("/user/:id", (req, res, next)=>{
+  users = users.filter(usr => usr.id != req.params.id);
+  res.status(200).json(users);
+})
