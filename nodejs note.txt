@@ -31,7 +31,14 @@ app -> rouleManager -> roleRoute -> roleController -> roleDatabase
 .env file is changes all of applications store in env 	need install => npm i dotenv
 check npm install file => npm ls
 
+Mongoose note
 mongo db lession
 install => npm i mongoose
+Schema is create db require file name eg: name : {type : string}
+this is also create db model
+ref => join user id
+type : Schema.Types.ObjectId => is also join user id
+populate() =>is show join user detail 
+if you dont need in user other file eg: populate("user", "-password -__v")
 
 microservice , monolathic, cloudify

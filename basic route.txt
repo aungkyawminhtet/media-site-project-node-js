@@ -50,3 +50,54 @@ app.delete("/user/:id", (req, res, next)=>{
   users = users.filter(usr => usr.id != req.params.id);
   res.status(200).json(users);
 })
+
+route.post("/", (req, res, next) => {
+    res.status(200).json(req.body);
+});
+
+route.route("/:id")
+    .get((req, res) => res.json({msg: "single post id is " + req.params.id}))
+    .patch((req, res) => res.json({msg: "update user id is " + req.params.id}))
+    .delete((req, res,next) => res.json({msg: `delete user id is ${req.params.id}`}))
+
+// route.get("/:id", (req, res, next) => {
+//     let id = req.params.id;
+//     res.json({msg: `single user id is ${id}`});
+// });
+
+// route.patch("/:id", (req, res, next) => {
+//     res.status(200).json({msg: `update user id is ${req.params.id}`});
+// });
+
+// route.delete("/:id", (req, res, next) => {
+//     let id = req.params.id;
+
+//     res.status(200).json({msg: `delete user id is ${id}`});
+// })
+
+
+router.get("/", (req, res, next) => {
+    res.json({msg : "All posts"});
+});
+
+router.post("/",(req, res, next) => {
+    res.status(200).json(req.body);
+});
+
+router.route("/:id")
+    .get((req, res, next) => res.json({msg: `Single post id is ${req.params.id}`}))
+    .patch((req, res, next) => res.json({msg: `update post id id${req.params.id}`}))
+    .delete((req,res,next) => res.json({msg: `delete post id is  ${req.params.id}`}))
+
+// router.get("/:id", (req, res, next) => {
+//     res.json({msg : `Single post id is ${req.params.id}`});
+// });
+
+// router.patch("/:id", (req, res, next) => {
+//     let id = req.params.id;
+//     res.status(200).json({msg: `update post id is ${id}`});
+// });
+
+// router.delete("/:id", (req, res, next) => {
+//     res.status(200).json({msg : `delete post id is ${req.params.id}`});
+// });

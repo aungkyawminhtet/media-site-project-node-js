@@ -1,32 +1,13 @@
 const route = require('express').Router();
+const controller = require('../controllers/user');
 
-route.get("/", (req, res, next) => {
-    res.status(200).json({msg: "All Users"});
-});
+route.get("/", controller.all);
 
-route.post("/", (req, res, next) => {
-    res.status(200).json(req.body);
-});
+route.post("/", controller.post);
 
 route.route("/:id")
-    .get((req, res) => res.json({msg: "single post id is " + req.params.id}))
-    .patch((req, res) => res.json({msg: "update user id is " + req.params.id}))
-    .delete((req, res,next) => res.json({msg: `delete user id is ${req.params.id}`}))
-
-// route.get("/:id", (req, res, next) => {
-//     let id = req.params.id;
-//     res.json({msg: `single user id is ${id}`});
-// });
-
-// route.patch("/:id", (req, res, next) => {
-//     res.status(200).json({msg: `update user id is ${req.params.id}`});
-// });
-
-// route.delete("/:id", (req, res, next) => {
-//     let id = req.params.id;
-
-//     res.status(200).json({msg: `delete user id is ${id}`});
-// })
-
+    .get(controller.get)
+    .patch(controller.patch)
+    .delete(controller.drop)
 
 module.exports = route;
