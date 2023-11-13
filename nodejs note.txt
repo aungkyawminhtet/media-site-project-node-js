@@ -42,3 +42,6 @@ populate() =>is show join user detail
 if you dont need in user other file eg: populate("user", "-password -__v")
 
 microservice , monolathic, cloudify
+
+joi libaray is for validate
+bcrypt lib is for encode decode

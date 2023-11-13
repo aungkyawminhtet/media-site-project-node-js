@@ -1,41 +1,30 @@
 require('dotenv').config();
 const express = require('express');
 const app = express();
+const path = require('path');
+
+const fileupload = require("express-fileupload");
+// const {saveFile, saveFiles, deleteFile} = require("./helpers/gallery");
 
 const mongoose = require('mongoose');
 mongoose.connect('mongodb://127.0.0.1:27017/test');
 
 const userRoute = require("./routes/user");
 const postRoute = require("./routes/post");
+const categoryRoute = require("./routes/category");
 
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+
+app.use(fileupload());
 app.use(express.json());
 
-const funcky = (req, res, next) => {
-  res.status(200).json({msg: "you can all access"});
-}
+// app.post('/gallery',saveFiles , async(req, res, next) => {
+//   // await deleteFile(req.body.name);
+//   res.json({msg: "file upload", imageName: req.body.images});
+// });
 
-const isLogged = (req, res, next) => {
-  if( 2 == 2){
-    // res.json({msg : "you pass isLogged"});
-    next();
-  }else{
-    next(new Error("Your are not login"));
-  }
-}
-
-const isAdmin = (req, res, next) => {
-  if(5 == 5){
-    // res.json({msg: "your is admin"});
-    next();
-  }else{
-    next(new Error("Your are not admin"));
-  }
-}
-
-app.get("/users",isLogged, isAdmin, funcky);
-
-
-// app.use("/users", userRoute);
+app.use("/category", categoryRoute);
+app.use("/users", userRoute);
 app.use("/posts", postRoute);
 
 app.use((err, req, res, next) => {

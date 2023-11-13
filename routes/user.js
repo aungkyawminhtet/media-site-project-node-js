@@ -1,13 +1,9 @@
-const route = require('express').Router();
-const controller = require('../controllers/user');
+const router = require('express').Router();
+const controller = require("../controllers/user");
+const {Schema} = require("../helpers/schema");
+const {validatebody} = require("../helpers/validator");
 
-route.get("/", controller.all);
+router.post("/",validatebody(Schema.userSchema), controller.login);
+router.post("/register", controller.register);
 
-route.post("/", controller.post);
-
-route.route("/:id")
-    .get(controller.get)
-    .patch(controller.patch)
-    .delete(controller.drop)
-
-module.exports = route;
+module.exports = router;

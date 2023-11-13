@@ -1,0 +1,35 @@
+const funcky = (req, res, next) => {
+  console.log(req.waringms);
+  res.status(200).json({msg: "you can all access"});
+}
+
+const isLogged = (req, res, next) => {
+  if( 2 == 2){
+    // res.json({msg : "you pass isLogged"});
+    req.message = "you pass islogged";
+    next();
+  }else{
+    next(new Error("Your are not login"));
+  }
+}
+
+const isAdmin = (req, res, next) => {
+  if(5 == 5){
+    console.log(req.message);
+    req.waringms = "your is admin";
+    next();
+  }else{
+    next(new Error("Your are not admin"));
+  }
+}
+
+app.get("/users",isLogged, isAdmin, funcky);
+
+
+const saveFile = async(req, res, next) => {
+  let name = new Date().valueOf() + "_" + req.files.file.name;
+  // console.log(name);
+  req.files.file.mv(`./uploads/${name}`);
+  req.imageName = req.files.file.name;
+  next();
+}
