@@ -16,8 +16,9 @@ const get = async(req, res, next) => {
 }
 
 const post = async(req, res, next) => {
-    let savePost = await new DB(req.body).save();
-    helper.fMmsg(res, "post Added", savePost);
+    // console.log(req.body.user);
+    // let savePost = await new DB(req.body).save();
+    helper.fMmsg(res, "post Added", req.body.user);
 }
 
 const patch = async(req, res, next) => {
