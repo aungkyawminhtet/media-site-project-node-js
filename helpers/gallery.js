@@ -17,7 +17,7 @@ const saveFiles = async(req, res, next) => {
         file.mv(`./uploads/${fileName}`);
         fileNames.push(fileName);
     });
-    req.body["images"] = fileNames.join(",");
+    req.body["images"] = fileNames.join();
     next();
 }
 

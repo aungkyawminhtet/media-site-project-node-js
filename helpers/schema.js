@@ -4,7 +4,8 @@ module.exports = {
     Schema : {
         addCat: joi.object({
             name:joi.string().required(),
-            image: joi.string().required()
+            image: joi.string().required(),
+            user: joi.optional()
         }),
 
         userSchema: joi.object({
@@ -18,7 +19,21 @@ module.exports = {
             cat : joi.string().regex(/^[0-9a-fA-F]{24}$/).required(),
             title : joi.string().required(),
             image: joi.string().required(),
-            decs: joi.string().required()
+            decs: joi.string().required(),
+            user: joi.optional()
+        }),
+
+        tagSchema: joi.object({
+            name: joi.string().required(),
+            image: joi.string().required(),
+            user: joi.optional()
+        }),
+
+        commentSchema: joi.object({
+            postId : joi.string().regex(/^[0-9a-fA-F]{24}$/),
+            name: joi.string().required(),
+            email: joi.string().required(),
+            content: joi.string().required()
         }),
 
         allSchema: {

@@ -29,7 +29,7 @@ const patch = async(req, res, next) => {
     let category = await DB.findById(req.params.id);
     if(category){
         await DB.findByIdAndUpdate(category._id , req.body);
-        let retcategory = await DB.findById(category._id);
+        let retcategory = await DB.findById(category._id); 
         helper.fMmsg(res, "category updated", retcategory);
     }else{
         next(new Error("No found with that id"));
