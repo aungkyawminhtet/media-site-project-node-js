@@ -45,3 +45,6 @@ microservice , monolathic, cloudify
 
 joi libaray is for validate
 bcrypt lib is for encode decode
+
+.select is for select for database
+.populate is remove form db

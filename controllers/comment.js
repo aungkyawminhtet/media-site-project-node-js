@@ -6,6 +6,15 @@ const all = async(req, res, next) => {
     helper.fMmsg(res, "all comments", comments);
 }
 
+const get = async(req, res, next) => {
+    let comment = await commentDB.find("postId: req.params.id");
+    if(comment){
+        helper.fMmsg(res, "all post comment ", comment);
+    }else{
+        next(new Error("NO comment with that id"));
+    }
+}
+
 const post = async(req, res, next) => {
     let result = await new commentDB(req.body).save();
     helper.fMmsg(res, "comment is added", result);
@@ -24,5 +33,6 @@ const drop = async(req, next , res) => {
 module.exports = {
     all,
     post,
-    drop
+    drop,
+    get
 }

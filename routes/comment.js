@@ -5,8 +5,11 @@ const {Schema} = require("../helpers/schema");
 
 router.get("/", controller.all);
 
+router.get("/:id",[validateParam(Schema.allSchema.id, "id"), controller.get]);
+
 router.post("/", [validateToken, validatebody(Schema.commentSchema), controller.post]);
 
 router.delete("/:id",[validateToken, validateParam(Schema.allSchema.id, "id"), controller.drop]);
 
 module.exports = router;
+ 

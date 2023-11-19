@@ -17,6 +17,7 @@ module.exports = {
 
         postSchema: joi.object({
             cat : joi.string().regex(/^[0-9a-fA-F]{24}$/).required(),
+            tag: joi.string().regex(/^[0-9a-fA-F]{24}$/),
             title : joi.string().required(),
             image: joi.string().required(),
             decs: joi.string().required(),
@@ -33,13 +34,18 @@ module.exports = {
             postId : joi.string().regex(/^[0-9a-fA-F]{24}$/),
             name: joi.string().required(),
             email: joi.string().required(),
-            content: joi.string().required()
+            content: joi.string().required(),
+            user: joi.optional()
         }),
 
         allSchema: {
             id: joi.object({
                 id: joi.string().regex(/^[0-9a-fA-F]{24}$/).required()
             }),
+            page: joi.object({
+                page: joi.number().required(),
+            }),
+
             image: {
                 image: joi.object({
                     name: joi.string().required()
